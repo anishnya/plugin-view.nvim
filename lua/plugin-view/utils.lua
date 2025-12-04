@@ -3,6 +3,21 @@ local config = require "plugin-view.config"
 ---@class plugin-view.utils
 local M = {}
 
+M.remove_plugin = function(plugin_name, plugins)
+    local indexToRemove = nil
+
+    for i, plugin in ipairs(plugins) do
+        if plugin.spec.name == plugin_name then
+            indexToRemove = i
+            break
+        end
+    end
+
+    if indexToRemove ~= nil then
+        table.remove(plugins, indexToRemove)
+    end
+end
+
 M.create_floating_win = function()
   local buf = vim.api.nvim_create_buf(false, true)
 
